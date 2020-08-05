@@ -9,6 +9,7 @@ namespace Cadastre.Core.Models
 {
     public class Client
     {
+        [JsonPropertyName("ClientId")]
         public int ClientId { get; set; }
 
         [Display(Name = "Клиент")]
@@ -38,5 +39,9 @@ namespace Cadastre.Core.Models
         [Display(Name = "Страна")]
         [JsonPropertyName("Country")]
         public string Country { get; set; }
+
+        [Display(Name = "В черном списке:")]
+        [JsonPropertyName("IsBlackListed")]
+        public bool IsBlackListed { get; set; }
     }
 }

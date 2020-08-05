@@ -15,14 +15,16 @@
             <th>Юридический адрес</th>
             <th>Фактический адрес</th>
             <th>Почтовый адрес</th>
-            <th>Страна</th>    
+            <th>Страна</th>
+            <th>В черном списке</th>
             <th></th>
         </tr>
     </thead>
 </table>
 
-<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+<link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 @section scripts{
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -45,12 +47,11 @@
                     { "data": "MailingAddress" },
                     { "data": "Country" },
                     {
+                      "data" : "IsBlackListed" },
+                    {
                         "data": "ClientId", "render": function (data) {
-                            return "<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Client")/" + data + "')><i class='fa fa-pencil'></i> Изменить</a>";
-                        },
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "150px"
+                            return "<a class='btn btn-primary btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Client")/" + data + "')><i class='fa fa-pencil'></i> Изменить</a>";
+                        }
                     }
                 ],
                 "language": {
@@ -60,7 +61,14 @@
             });
         });
 
-        //Форма открывается при нажатии кнопки "Добавить"
+        $('#clientTable tr td').each(function () {          
+            var cellValue = $(this).html();
+                if (cellValue == "fghf") {
+                    $(this).css('background-color', 'red');
+                }
+        });
+
+        //Форма открывается при нажатии кнопки "Добавить" или "Изменить"
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
@@ -104,4 +112,4 @@
     </script>
 
 
-    }
+}

@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using ClientDb = Cadastre.Core.DataAccess.Entities.Client;
 using ClientDto = Cadastre.Core.Models.Client;
 using Cadastre.Core.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Routing;
 
 namespace Cadastre.Core.Controllers
 {
@@ -25,8 +27,10 @@ namespace Cadastre.Core.Controllers
             _logger = logger;
             _appDBContext = appDBContext;
         }
-
+       
+        
         [Route("Index")]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -36,10 +40,11 @@ namespace Cadastre.Core.Controllers
         public ActionResult GetData()
         {
             List<ClientDto> clientList = _appDBContext.Clients.ToList().Select(x => x.ToDto()).ToList();
-            return Json(new { data = clientList });
-            //return Json(clientList);
+            return Json(new { data = clientList });           
         }
 
+
+        [Route("AddOrEdit/{id}")]
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -53,22 +58,32 @@ namespace Cadastre.Core.Controllers
 
         }
 
-
+        [Route("AddOrEdit/{id}")]
         [HttpPost]
-        public ActionResult AddOrEdit(Client client)
+        public async Task<IActionResult> AddOrEdit(ClientDto client)
         {
 
             if (client.ClientId == 0)
             {
                 _appDBContext.Clients.Add(client.ToEntity());
-                _appDBContext.SaveChanges();
-                return Json(new { succes = true, message = "Запись сохранена успешно" });
+                await _appDBContext.SaveChangesAsync();
+                return Json(new { success = true, message = "Запись сохранена успешно" });
             }
             else
             {
                 var record = _appDBContext.Clients.Where(x => x.Id == client.ClientId).FirstOrDefault();
-                _appDBContext.Clients.Update(client.ToEntity());               
-                _appDBContext.SaveChanges();
+
+                record.Id = client.ClientId;
+                record.INN = client.INN;
+                record.IsBlackListed = client.IsBlackListed;
+                record.LegalAddress = client.LegalAddress;
+                record.MailingAddress = client.MailingAddress;
+                record.Name = client.ClientName;
+                record.ActualAddress = client.ActualAddress;
+                record.Type = client.TypeClient;
+
+                _appDBContext.Clients.Update(record);
+                await _appDBContext.SaveChangesAsync();
                 return Json(new { success = true, message = "Запись изменена успешно" });
             }
         }

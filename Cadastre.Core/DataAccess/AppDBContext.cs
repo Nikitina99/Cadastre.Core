@@ -17,7 +17,9 @@ namespace Cadastre.Core.DataAccess
         /// </summary>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Client>()
+        .Property(b => b.IsBlackListed)
+        .HasDefaultValue(false); //настраиваем значение по-умолчанию для свойства isBlackListed
         }
 
         /// <summary>
