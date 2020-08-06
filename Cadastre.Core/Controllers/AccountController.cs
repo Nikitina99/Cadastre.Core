@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UserDb = Cadastre.Core.DataAccess.Entities.User;
 using UserDto = Cadastre.Core.Models.User;
-using Cadastre.Core.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Cadastre.Core.DataAccess;
@@ -18,6 +15,10 @@ namespace Cadastre.Core.Controllers
     public class AccountController : Controller
     {
         
+        /// <summary>
+        /// Метод для отображения Представления LogIn
+        /// </summary>
+        /// <returns></returns>
         [Route("LogIn")]
         [HttpGet]
         public IActionResult LogIn()
@@ -25,12 +26,16 @@ namespace Cadastre.Core.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Контекст
+        /// </summary>
         private AppDBContext _db;
         public AccountController(AppDBContext context)
         {
            _db = context;
         }
 
+       
         [Route("LogIn")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -43,13 +48,16 @@ namespace Cadastre.Core.Controllers
                 {
                     await Authenticate(model.Login); // аутентификация
 
-                    return RedirectToAction("Index","Client");
+                    return RedirectToAction("Index","Client"); // переход
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
         }
 
+        /// <summary>
+        /// Метод для устанавки аутентификационных кук.
+        /// </summary>
         private async Task Authenticate(string userName)
         {
             // создаем один claim
@@ -63,6 +71,9 @@ namespace Cadastre.Core.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
+        /// <summary>
+        /// Метод для выхода из сайта
+        /// </summary>
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

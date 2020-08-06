@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cadastre.Core.Models
 {
+    /// <summary>
+    /// Модель Пользователей.
+    /// </summary>
     public class User
     {
         public int UserId { get; set; }

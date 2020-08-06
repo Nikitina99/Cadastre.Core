@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Cadastre.Core.DataAccess
 {
+    /// <summary>
+    /// Контекст.
+    /// </summary>
     public class AppDBContext: DbContext
     {
         public virtual DbSet<Client> Clients { get; set; }
@@ -31,7 +34,6 @@ namespace Cadastre.Core.DataAccess
         /// <summary>
         /// Конструктор для создани миграции.
         /// </summary>
-        /// <param name="dbContextOptions"></param>
         public AppDBContext(DbContextOptions<AppDBContext> dbContextOptions): base(dbContextOptions)
         {
 
@@ -40,7 +42,6 @@ namespace Cadastre.Core.DataAccess
         /// <summary>
         /// Выбирает и конфигурирует источник данных, используемых контекстом.
         /// </summary>
-        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Cadastre.Core.Models
 {
+    /// <summary>
+    /// Модель Клиентов.
+    /// </summary>
     public class Client
     {
         [JsonPropertyName("ClientId")]
