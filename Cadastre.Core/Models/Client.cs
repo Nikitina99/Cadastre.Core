@@ -12,16 +12,20 @@ namespace Cadastre.Core.Models
         [JsonPropertyName("ClientId")]
         public int ClientId { get; set; }
 
+
         [Display(Name = "Клиент")]
         [JsonPropertyName("ClientName")]
+        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
         public string ClientName { get; set; }
 
         [Display(Name = "Тип клиента")]
         [JsonPropertyName("TypeClient")]
+        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
         public string TypeClient { get; set; }
 
         [Display(Name = "ИНН")]
         [JsonPropertyName("INN")]
+        [StringLength(10, ErrorMessage = "Должен состоять из 10 цифр.")]
         public string INN { get; set; }
 
         [Display(Name = "Юридический адрес")]
@@ -30,6 +34,7 @@ namespace Cadastre.Core.Models
 
         [Display(Name = "Фактический адрес")]
         [JsonPropertyName("ActualAddress")]
+        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
         public string ActualAddress { get; set; }
 
         [Display(Name = "Почтовый адрес")]
@@ -42,6 +47,7 @@ namespace Cadastre.Core.Models
 
         [Display(Name = "В черном списке:")]
         [JsonPropertyName("IsBlackListed")]
-        public bool IsBlackListed { get; set; }
+        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
+        public string IsBlackListed { get; set; }
     }
 }

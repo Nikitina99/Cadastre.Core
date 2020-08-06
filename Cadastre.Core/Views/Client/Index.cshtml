@@ -5,7 +5,7 @@
 
 <h2>Кадастровый учёт</h2>
 
-<a class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit","Client")')"><i class="fa fa-plus"></i> Добавить</a>
+<a class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("Add","Client")')"><i class="fa fa-plus"></i> Добавить</a>
 <table id="clientTable" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
@@ -32,7 +32,7 @@
     <script>
         var Popup, dataTable;
         $(document).ready(function () {
-            dataTable= $("#clientTable").DataTable({
+            dataTable = $("#clientTable").DataTable({
                 "ajax": {
                     "url": "/Client/GetData",
                     "type": "GET",
@@ -40,33 +40,30 @@
                 },
                 "columns": [
                     { "data": "ClientName" },
-                    { "data": "TypeClient" },
+                    { "data": "TypeClient"},
                     { "data": "INN" },
                     { "data": "LegalAddress" },
                     { "data": "ActualAddress" },
                     { "data": "MailingAddress" },
                     { "data": "Country" },
                     {
-                      "data" : "IsBlackListed" },
+                        "data": "IsBlackListed", "render": function (data) {
+                            return data == "Да" ? '<b>Да<b>' : 'Нет';
+                        }
+                    },
                     {
                         "data": "ClientId", "render": function (data) {
-                            return "<a class='btn btn-primary btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Client")/" + data + "')><i class='fa fa-pencil'></i> Изменить</a>";
+                            return "<a class='btn btn-primary btn-sm' onclick=PopupForm('@Url.Action("Edit","Client")/" + data + "')><i class='fa fa-pencil'></i> Изменить</a>";
                         }
                     }
                 ],
-                "language": {
+                   "language": {
                     "emptyTable":"Таблица не найдена. Пожалуйста, нажмите <b>Добавить<b>."
-                }
+                },
 
             });
         });
-
-        $('#clientTable tr td').each(function () {          
-            var cellValue = $(this).html();
-                if (cellValue == "fghf") {
-                    $(this).css('background-color', 'red');
-                }
-        });
+       
 
         //Форма открывается при нажатии кнопки "Добавить" или "Изменить"
         function PopupForm(url) {
@@ -79,7 +76,7 @@
                         autoOpen: true,
                         resizable: false,
                         title: 'Клиенты',
-                        height: 500,
+                        height: 700,
                         width: 600,
                         close: function () {
                             Popup.dialog('destroy').remove();
@@ -90,25 +87,27 @@
 
         //Функция отправки данных из формы "ADDOrEdit"
         function SubmitForm(form) {
-            $.ajax({
-                type: "POST",
-                url: form.action,
-                data: $(form).serialize(),
-                success: function (data) {
-                    if (data.success) {
-                        Popup.dialog('close');
-                        dataTable.ajax.reload();
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
 
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className:"success"
-                        })
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
                     }
-                }
-            });
+                });
+            }
             return false;
         }
-
     </script>
 
 

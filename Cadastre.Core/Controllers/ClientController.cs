@@ -44,36 +44,43 @@ namespace Cadastre.Core.Controllers
         }
 
 
-        [Route("AddOrEdit/{id}")]
+        [Route("Add")]
         [HttpGet]
-        public ActionResult AddOrEdit(int id = 0)
+        public ActionResult Add(int id = 0)
         {
-            if (id == 0)
-                return View(new Client());
-            else
-            {
-                var record = _appDBContext.Clients.Where(x => x.Id == id).FirstOrDefault().ToDto();
-                return View(record);
-            }
+            return View(new Client());
+        }
+
+        [Route("Edit/{id}")]
+        [HttpGet]
+        public ActionResult Edit(int id = 0)
+        {
+             var record = _appDBContext.Clients.Where(x => x.Id == id).FirstOrDefault().ToDto();
+             return View(record);
 
         }
 
-        [Route("AddOrEdit/{id}")]
+        [Route("Add")]
         [HttpPost]
-        public async Task<IActionResult> AddOrEdit(ClientDto client)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(ClientDto client)
         {
-
-            if (client.ClientId == 0)
-            {
-                _appDBContext.Clients.Add(client.ToEntity());
-                await _appDBContext.SaveChangesAsync();
-                return Json(new { success = true, message = "Запись сохранена успешно" });
+            if (ModelState.IsValid) { 
+                     _appDBContext.Clients.Add(client.ToEntity());
+                     await _appDBContext.SaveChangesAsync();
             }
-            else
+
+           return Json(new { success = true, message = "Запись сохранена успешно" });            
+        }
+
+        [Route("Edit/{id}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ClientDto client)
+        {
+            if (ModelState.IsValid)
             {
                 var record = _appDBContext.Clients.Where(x => x.Id == client.ClientId).FirstOrDefault();
-
-                record.Id = client.ClientId;
                 record.INN = client.INN;
                 record.IsBlackListed = client.IsBlackListed;
                 record.LegalAddress = client.LegalAddress;
@@ -81,11 +88,14 @@ namespace Cadastre.Core.Controllers
                 record.Name = client.ClientName;
                 record.ActualAddress = client.ActualAddress;
                 record.Type = client.TypeClient;
+                record.Country = client.Country;
+
 
                 _appDBContext.Clients.Update(record);
                 await _appDBContext.SaveChangesAsync();
-                return Json(new { success = true, message = "Запись изменена успешно" });
             }
+                return Json(new { success = true, message = "Запись изменена успешно" });
+            
         }
     }
 }

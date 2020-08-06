@@ -21,7 +21,8 @@ namespace Cadastre.Core.Helpers
                 Country = entity.Country,
                 INN = entity.INN,
                 LegalAddress = entity.LegalAddress,
-                MailingAddress = entity.MailingAddress
+                MailingAddress = entity.MailingAddress,
+                IsBlackListed=entity.IsBlackListed
             };
         }
 
@@ -36,7 +37,8 @@ namespace Cadastre.Core.Helpers
                 LegalAddress = dto.LegalAddress,
                 ActualAddress = dto.ActualAddress,
                 MailingAddress = dto.LegalAddress,
-                Country = dto.Country
+                Country = dto.Country,
+                IsBlackListed=dto.IsBlackListed
             };
         }
     }

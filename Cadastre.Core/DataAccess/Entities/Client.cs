@@ -17,6 +17,6 @@ namespace Cadastre.Core.DataAccess.Entities
         public string ActualAddress { get; set; }     
         public string MailingAddress { get; set; }        
         public string Country { get; set; }
-        public bool IsBlackListed { get; set; }
+        public string IsBlackListed { get; set; }
     }
 }
