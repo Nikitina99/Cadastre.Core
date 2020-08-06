@@ -6,3 +6,16 @@
 input.input-validation-error {
     border: 1px solid #e80c4d;
 }
+
+body {
+    background-color: #000;
+    background-image: url('1579289497_34-81.jpg');
+}
+
+table {
+    background-color: #FFFFFF;
+}
+
+form {
+    margin: 250px 300px 300px 400px;
+}

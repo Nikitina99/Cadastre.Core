@@ -47,7 +47,6 @@ namespace Cadastre.Core.Models
 
         [Display(Name = "В черном списке:")]
         [JsonPropertyName("IsBlackListed")]
-        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
         public string IsBlackListed { get; set; }
     }
 }
