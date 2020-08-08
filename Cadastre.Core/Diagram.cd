@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="Cadastre.Core.Controllers.AccountController">
+    <Position X="0.5" Y="2" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Controllers.ClientController">
+    <Position X="4.25" Y="2" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAAAAAAAAAIAAAAAACAAEACAAAAAA=</HashCode>
+      <FileName>Controllers\ClientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.DataAccess.Entities.Client">
+    <Position X="5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAgIICAACAQABAAAAAAA=</HashCode>
+      <FileName>DataAccess\Entities\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.DataAccess.Entities.User">
+    <Position X="7.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>DataAccess\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.DataAccess.AppDBContext">
+    <Position X="3.75" Y="9.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAQAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\AppDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Helpers.ModelParser">
+    <Position X="9.75" Y="9.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAA=</HashCode>
+      <FileName>Helpers\ModelParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Models.Client">
+    <Position X="12" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAgIICAACQAABAAAAIAA=</HashCode>
+      <FileName>Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Models.User">
+    <Position X="15.5" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Program">
+    <Position X="8.25" Y="12.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cadastre.Core.Startup">
+    <Position X="12.25" Y="12.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Mvc.Controller" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Microsoft.EntityFrameworkCore.DbContext" Collapsed="true">
+    <Position X="0.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

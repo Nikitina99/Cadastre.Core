@@ -9,6 +9,9 @@
     {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "jquery.i18n@1.0.7",
+      "destination": "wwwroot/js/"
     }
-  ]
 }

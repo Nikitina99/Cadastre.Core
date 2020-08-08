@@ -27,8 +27,11 @@
 <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 @section scripts{
+
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/languages/ru.js"></script>
+
     <script>
         var Popup, dataTable;
         $(document).ready(function () {
@@ -58,12 +61,13 @@
                     }
                 ],
                    "language": {
-                    "emptyTable":"Таблица не найдена. Пожалуйста, нажмите <b>Добавить<b>."
+                       "emptyTable": "Таблица не найдена. Пожалуйста, нажмите <b>Добавить<b>.",
+                       "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Russian.json"
                 },
 
             });
         });
-       
+
 
         //Форма открывается при нажатии кнопки "Добавить" или "Изменить"
         function PopupForm(url) {
